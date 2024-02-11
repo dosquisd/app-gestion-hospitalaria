@@ -29,7 +29,7 @@ class Patient:
 		self.birthday.input('\tFecha de nacimiento')
 
 		print('* Signos vitales:')
-		self.blood_press = self.__valid_blood_press('\tPresión arterial [systolic/diastolic]: ')
+		self.blood_press = self.__valid_blood_press('\tPresión arterial [Systólica/Diastólica]: ')
 		self.temperature = valid_float('\tTemperatura: ')
 		self.o2_saturation = valid_float('\tSaturación de O2: ')
 		self.frequency = valid_float('\tFrecuencia respiratoria: ')

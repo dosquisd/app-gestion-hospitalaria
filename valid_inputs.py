@@ -5,7 +5,7 @@ def valid_float(msg: str) -> float:
 		except ValueError:
 			print('Ingrese el valor numérico correctamente')
 
-def valid_two_options(msg: str, options: list | tuple) -> bool:
+def valid_two_options(msg: str, options: list | tuple) -> str:
 	while True:
 		temp = input(msg).lower()
 		if temp in options:
