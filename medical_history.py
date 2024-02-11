@@ -14,21 +14,23 @@ class MedicalHistory:
 		
 	def input(self, available_beds: int) -> None:
 		self.patient.input()
-		self.admitted = valid_two_options('\n*¿El paciente ha sido admitido previamente? [y/n]: ', ('y', 'n')) == 'y'
+		print()
+
+		self.admitted = valid_two_options('* ¿El paciente ha sido admitido previamente? [y/n]: ', ('y', 'n')) == 'y'
 		if not self.admitted:
-			return
+			return None
 		
 		self.discharged = valid_two_options('* ¿A el paciente ya se le dio el alta en este servicio? [y/n]: ', ('y', 'n')) == 'y'
 		if self.discharged:
-			return
+			return None
 		
-		self.bed = valid_two_options('* ¿El paciente ocupa una cama? [y/n]: ') == 'y'
+		self.bed = valid_two_options('* ¿El paciente ocupa una cama? [y/n]: ', ('y', 'n')) == 'y'
 		if self.bed and available_beds == 0:
 			print('No hay camas disponibles para admitir al paciente')
 			self.admitted = False
 			self.discharged = None
 			self.bed = None
-			return
+			return None
 		
 		self.nums_days_stay = valid_int_greater_than_0('* Días de estancia: ')
 
