@@ -2,10 +2,11 @@ from date import Date
 from valid_inputs import *
 
 class Patient:
-	def __init__(self, document: str | None = None, full_name: str | None = None, sex: str | None = None,
-			  	blood_press: float | None = None, temperature: float | None = None, o2_saturation: float | None = None,
-				frequency: float | None = None, evolution_notes: str | None = None, diagnostic_imgs: str | None = None,
-				lab_results: str | None = None, prescription_drugs: str | None = None, chronic_disease: bool | None = None) -> None:
+	def __init__(
+			self, document: str | None = None, full_name: str | None = None, sex: str | None = None,
+			blood_press: float | None = None, temperature: float | None = None, o2_saturation: float | None = None,
+			frequency: float | None = None, evolution_notes: str | None = None, diagnostic_imgs: str | None = None,
+			lab_results: str | None = None, prescription_drugs: str | None = None, chronic_disease: bool | None = None) -> None:
 		self.document: str | None = document
 		self.full_name: str | None = full_name
 		self.sex: str | None = sex
@@ -28,16 +29,30 @@ class Patient:
 		self.birthday.input('\tFecha de nacimiento')
 
 		print('* Signos vitales:')
-		self.blood_press = valid_float('\tPresión arterial: ')
+		self.blood_press = self.__valid_blood_press('\tPresión arterial [systolic/diastolic]: ')
 		self.temperature = valid_float('\tTemperatura: ')
 		self.o2_saturation = valid_float('\tSaturación de O2: ')
 		self.frequency = valid_float('\tFrecuencia respiratoria: ')
 
-		self.evolution_notes = input('* Notas de evolución: ')
 		self.lab_results = input('* Resultados de exámenes de laboratorio: ')
+		self.evolution_notes = input('* Notas de evolución: ')
 		self.prescription_drugs = input('* Medicamentos formulados: ')
 		self.chronic_disease = valid_two_options('¿Presenta alguna enfermedad crónica? [y/n]: ', ('y', 'n')) == 'y'
 		self.diagnostic_imgs = input('Escriba el nombre del archivo (con la extensión) para imágenes diagnósticas: ')
+
+	@staticmethod
+	def __valid_blood_press(msg: str) -> str:
+		while True:
+			try:
+				temp: str = input(msg)
+				systolic, diastolic = [int(press_value) for press_value in temp.split('/')]
+			except ValueError:
+				continue
+
+			if systolic < 0 or diastolic < 0:
+				continue
+
+			return temp
 
 	def __str__(self) -> str:
 		return f"""* Datos del paciente
