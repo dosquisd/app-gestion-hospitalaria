@@ -24,8 +24,19 @@ class Date:
 				continue
 
 			if not Date.valid_date(day, month, year):
-				print('Fecha inválida\n')
+				print('Fecha inválida')
 
+		self.day = day
+		self.month = month
+		self.year = year
+
+	def input_date(self, date_str: str) -> None:
+		# Ingresa la fecha en el formato [dd/mm/aaaa]
+		try:
+			day, month, year = [int(temp) for temp in date_str.split('/')]
+		except ValueError:
+			return
+		
 		self.day = day
 		self.month = month
 		self.year = year
@@ -36,6 +47,7 @@ class Date:
 	
 	@staticmethod
 	def valid_date(day: int, month: int, year: int) -> bool:
+		# Validar que las fechas de por sí estén bien
 		if month < 1 or month > 12:
 			return False
 		
@@ -45,7 +57,7 @@ class Date:
 		if month in (1, 3, 5, 7, 8, 10, 12):
 			return day <= 31
 		
-		if month in (4, 6, 8, 11):
+		if month in (4, 6, 9, 11):
 			return day <= 30
 		
 		if Date.__is_leap_year(year):
