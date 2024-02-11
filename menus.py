@@ -10,11 +10,7 @@ def main_menu() -> int:
 	print('|3. Salir                      |')
 	print('+------------------------------+\n')
 
-	while True:
-		try:
-			return int(input('Ingrese el número de la opción: '))
-		except ValueError:
-			print('Ingrese tipo de dato numérico')
+	return valid_input_menus()
 
 def manage_medical_history_menu() -> int: # Opción 1 del menú principal
 	print('+----------------------------+')
@@ -46,7 +42,7 @@ def delete_patient_menu() -> None:
 	print('| - Eliminar paciente        |')
 	print('+----------------------------+')
 
-def generate_reports() -> int:
+def generate_reports_menu() -> int:
 	print('+------------------------------------------------+')
 	print('|                Generar reportes                |')
 	print('+------------------------------------------------+')
@@ -60,31 +56,31 @@ def generate_reports() -> int:
 
 	return valid_input_menus()
 
-def occupancy_rate() -> None:
+def occupancy_rate_menu() -> None:
 	print('+---------------------------+')
 	print('| Generar reportes          |')
 	print('| - Porcentaje de ocupación |')
 	print('+---------------------------+')
 
-def average_stay_service() -> None:
+def average_stay_service_menu() -> None:
 	print('+--------------------------------------+')
 	print('| Generar reportes                     |')
 	print('| - Promedios de estancia por servicio |')
 	print('+--------------------------------------+')
 
-def admissions_and_discharges() -> None:
+def admissions_and_discharges_menu() -> None:
 	print('+-----------------------------------------------+')
 	print('| Generar reportes  							   |')
 	print('| - Cantidad de admisiones y altas por servicio |')
 	print('+-----------------------------------------------+')
 
-def patients_chronic_diseases() -> None:
+def patients_chronic_diseases_menu() -> None:
 	print('+---------------------------------------+')
 	print('| Generar reportes 					   |')
 	print('| - Pacientes con enfermedades crónicas |')
 	print('+---------------------------------------+')
 
-def medicine_prescription() -> None:
+def medicine_prescription_menu() -> None:
 	print('+---------------------------------------------+')
 	print('| Generar reportes 							 |')
 	print('| - Prescripción de medicamentos por servicio |')
