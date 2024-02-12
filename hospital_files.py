@@ -71,7 +71,3 @@ class HospitalFiles:
 			return sentence == np.True_
 
 		return sentence == 'True'
-
-if __name__ == '__main__':
-	a = Hospital(300)
-	HospitalFiles.read_register(a)
