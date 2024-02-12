@@ -10,6 +10,7 @@ class Date:
 		return f'{self.day}/{self.month}/{self.year}'
 	
 	def input(self, message: str) -> None:
+		"""Ingresa la fecha en formato [dd/mm/aaaa] desde consola"""
 		day: int = 0
 		month: int = 0
 		year: int = 0
@@ -31,7 +32,7 @@ class Date:
 		self.year = year
 
 	def input_date(self, date_str: str) -> None:
-		# Ingresa la fecha en el formato [dd/mm/aaaa]
+		"""Ingresa la fecha en el formato [dd/mm/aaaa] como parametro"""
 		try:
 			day, month, year = [int(temp) for temp in date_str.split('/')]
 		except ValueError:
@@ -43,11 +44,12 @@ class Date:
 
 	@staticmethod
 	def __is_leap_year(year: int) -> bool:
+		"""Calcula si es año bisiesto"""
 		return (year % 400 == 0 or year % 4 == 0) and (year % 100 != 0)
 	
 	@staticmethod
 	def valid_date(day: int, month: int, year: int) -> bool:
-		# Validar que las fechas de por sí estén bien
+		"""Valida que las fechas estén bien ingresadas"""
 		if month < 1 or month > 12:
 			return False
 		

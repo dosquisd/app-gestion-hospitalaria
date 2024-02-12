@@ -13,6 +13,7 @@ class MedicalHistory:
 		self.nums_days_stay: int | None = nums_days_stay
 		
 	def input(self, available_beds: int) -> None:
+		"""Ingresa los datos del historial medico desde consola"""
 		self.patient.input()
 		print()
 

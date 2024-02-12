@@ -6,6 +6,7 @@ import numpy as np
 class HospitalFiles:
 	@staticmethod
 	def load_register(hospital: Hospital) -> None:
+		"""Ingresa los datos en patients.csv"""
 		df_patients: pd.DataFrame = pd.DataFrame(columns = [
 			'Document', 'Full Name', 'Sex', 'Birth Day', 'Blood Press', 'Temperature',
 			'O2 Saturation', 'Breathing Rate', 'Evolution Notes', 'Lab Results',
@@ -27,6 +28,7 @@ class HospitalFiles:
 
 	@staticmethod
 	def read_register(hospital: Hospital) -> None:
+		"""Lee los datos de patients.csv"""
 		try:
 			df_patients = pd.read_csv(r'files\patients.csv', delimiter=';')
 		except pd.errors.EmptyDataError:
@@ -64,6 +66,7 @@ class HospitalFiles:
 
 	@staticmethod
 	def to_bool(sentence: np.bool_ | str) -> bool:
+		"""Convierte los tipos de datos `np.bool_` y `str` a `bool`"""
 		if type(sentence) == np.bool_:
 			return sentence == np.True_
 

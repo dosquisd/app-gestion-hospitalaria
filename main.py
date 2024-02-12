@@ -5,6 +5,7 @@ from os import system
 from time import sleep
 
 def manage_medical_history(hospital: Hospital) -> None:
+	"""Menú encargado de la gerencia de historiales medicos"""
 	while True:
 		op: int = manage_medical_history_menu()
 		print('\n')
@@ -47,6 +48,7 @@ def manage_medical_history(hospital: Hospital) -> None:
 
 
 def generate_reports(hospital: Hospital) -> None:
+	"""Menú encargado de la generación de reportes"""
 	while True:
 		op: int = generate_reports_menu()
 		print('\n')
@@ -89,6 +91,7 @@ def generate_reports(hospital: Hospital) -> None:
 				system('cls')
 
 def main() -> None:
+	"""Menú principal"""
 	hospital: Hospital = Hospital(300)
 	HospitalFiles.read_register(hospital)
 

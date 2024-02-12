@@ -23,6 +23,7 @@ class Patient:
 		self.chronic_disease: bool | None = chronic_disease
 
 	def input(self) -> None:
+		"""Entrada de datos de un paciente desde consola"""
 		print('* Datos del paciente:')
 		self.document = input('\tDocumento: ')
 		self.full_name = input('\tNombre: ')
@@ -43,6 +44,7 @@ class Patient:
 
 	@staticmethod
 	def __valid_blood_press(msg: str) -> str:
+		"""Método que valida que la presión arterial esté en el formato sytólica/diastólica"""
 		while True:
 			try:
 				temp: str = input(msg)
@@ -57,6 +59,7 @@ class Patient:
 
 	@staticmethod
 	def __valid_diagnostic_img(msg: str) -> str:
+		"""Método que valida que esté bien ingresada la imagen diagnostica"""
 		diagnostic_imgs: str = r'files\diagnostics_images'
 		if not os.listdir(diagnostic_imgs): # Si la carpeta está vacía
 			return ''
