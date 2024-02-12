@@ -1,5 +1,6 @@
 from date import Date
 from valid_inputs import *
+import os
 
 class Patient:
 	def __init__(
@@ -29,16 +30,16 @@ class Patient:
 		self.birthday.input('\tFecha de nacimiento')
 
 		print('* Signos vitales:')
-		self.blood_press = self.__valid_blood_press('\tPresión arterial [Systólica/Diastólica]: ')
-		self.temperature = valid_float('\tTemperatura: ')
-		self.o2_saturation = valid_float('\tSaturación de O2: ')
-		self.frequency = valid_float('\tFrecuencia respiratoria: ')
+		self.blood_press = self.__valid_blood_press('\tPresión arterial [Systólica/Diastólica mmHg]: ')
+		self.temperature = valid_float('\tTemperatura [°C]: ')
+		self.o2_saturation = valid_float('\tSaturación de O2 [%]: ')
+		self.frequency = valid_float('\tFrecuencia respiratoria [bpm]: ')
 
 		self.lab_results = input('* Resultados de exámenes de laboratorio: ')
 		self.evolution_notes = input('* Notas de evolución: ')
 		self.prescription_drugs = input('* Medicamentos formulados: ')
 		self.chronic_disease = valid_two_options('¿Presenta alguna enfermedad crónica? [y/n]: ', ('y', 'n')) == 'y'
-		self.diagnostic_imgs = input('Escriba el nombre del archivo (con la extensión) para imágenes diagnósticas: ')
+		self.diagnostic_imgs = self.__valid_diagnostic_img('Escriba el nombre del archivo (con la extensión) para imágenes diagnósticas: ')
 
 	@staticmethod
 	def __valid_blood_press(msg: str) -> str:
@@ -54,25 +55,35 @@ class Patient:
 
 			return temp
 
+	@staticmethod
+	def __valid_diagnostic_img(msg: str) -> str:
+		diagnostic_imgs: str = r'files\diagnostics_images'
+		if not os.listdir(diagnostic_imgs): # Si la carpeta está vacía
+			return ''
+
+		while True:
+			img: str = input(msg)
+			diagnostic_img_path: str = fr'{diagnostic_imgs}\{img}'
+			if not (os.path.exists(diagnostic_img_path) and img):
+				print(f'No existe la imagen en la dirección: {diagnostic_img_path}')
+				continue
+			return img
+
+
 	def __str__(self) -> str:
 		return f"""* Datos del paciente
 	Documento: {self.document}
 	Nombre: {self.full_name}
 	Sexo: {'Hombre' if self.sex == 'm' else 'Mujer'}
+	Fecha de nacimiento: {self.birthday}
 * Signos vitales
-	Presión arterial: {self.blood_press}
-	Temperatura: {self.temperature}
-	Saturación de O2: {self.o2_saturation}
-	Frecuencia respiratoria: {self.frequency}
+	Presión arterial: {self.blood_press} mmHg
+	Temperatura: {self.temperature} °C
+	Saturación de O2: {self.o2_saturation}%
+	Frecuencia respiratoria: {self.frequency} bpm
 
-* Notas de evolución: {self.evolution_notes}
 * Resultados de exámenes de laboratorio: {self.lab_results}
+* Notas de evolución: {self.evolution_notes}
 * Medicamentos formulados: {self.prescription_drugs}
 * ¿Presenta alguna enfermedad crónica?: {'Sí' if self.chronic_disease else 'No'}
-* Imágenes diagnósticas: {self.diagnostic_imgs}"""
-	
-
-if __name__ == '__main__':
-	a = Patient()
-	a.input()
-	print(f'\n\n\n{a}')
+* Imágenes diagnósticas: {self.diagnostic_imgs if self.diagnostic_imgs is not None else 'No aplica'}"""

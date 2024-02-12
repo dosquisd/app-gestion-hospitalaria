@@ -7,7 +7,8 @@ def main_menu() -> int:
 	print('+------------------------------+')
 	print('|1. Gestionar historia clínica |')
 	print('|2. Generar Reportes           |')
-	print('|3. Salir                      |')
+	print('|3. Enlistar los pacientes     |')
+	print('|4. Salir                      |')
 	print('+------------------------------+\n')
 
 	return valid_input_menus()
@@ -85,6 +86,3 @@ def medicine_prescription_menu() -> None:
 	print('| Generar reportes 							 |')
 	print('| - Prescripción de medicamentos por servicio |')
 	print('+---------------------------------------------+')
-
-if __name__ == '__main__':
-	print(main_menu())

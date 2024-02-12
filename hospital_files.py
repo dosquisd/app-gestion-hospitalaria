@@ -52,14 +52,20 @@ class HospitalFiles:
 			hospital.medical_histories[-1].admitted = HospitalFiles.to_bool(df_patients['Admitted'][i])
 			hospital.medical_histories[-1].discharged = HospitalFiles.to_bool(df_patients['Discharged'][i]) if df_patients['Discharged'][i] != '?' else None
 			hospital.medical_histories[-1].bed = HospitalFiles.to_bool(df_patients['Bed'][i]) if df_patients['Bed'][i] != '?' else None
-			hospital.medical_histories[-1].nums_days_stay = HospitalFiles.to_bool(df_patients['Stay Days'][i]) if df_patients['Stay Days'][i] != '?' else None
+			hospital.medical_histories[-1].nums_days_stay = int(df_patients['Stay Days'][i]) if df_patients['Stay Days'][i] != '?' else None
+
+			# print(df_patients['Bed'][i], HospitalFiles.to_bool(df_patients['Bed'][i]), type(df_patients['Bed'][i]))
 
 			if hospital.medical_histories[-1].bed:
 				hospital.beds_used += 1
-
 	
 	@staticmethod
-	def to_bool(sentence: str) -> bool:
-		if sentence == 'False':
-			return False
-		return True
+	def to_bool(sentence: np.bool_ | str) -> bool:
+		if type(sentence) == np.bool_:
+			return sentence == np.True_
+
+		return sentence == 'True'
+
+if __name__ == '__main__':
+	a = Hospital(300)
+	HospitalFiles.read_register(a)

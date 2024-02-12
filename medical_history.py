@@ -21,19 +21,23 @@ class MedicalHistory:
 			return None
 		
 		self.discharged = valid_two_options('* ¿A el paciente ya se le dio el alta en este servicio? [y/n]: ', ('y', 'n')) == 'y'
-		if self.discharged:
-			return None
-		
 		self.bed = valid_two_options('* ¿El paciente ocupa una cama? [y/n]: ', ('y', 'n')) == 'y'
+
+		if self.bed:
+			self.nums_days_stay = valid_int_greater_than_0('* Días de estancia: ')
+
+		if self.discharged:
+			self.bed = None
+
 		if self.bed and available_beds == 0:
 			print('No hay camas disponibles para admitir al paciente')
 			self.admitted = False
 			self.discharged = None
 			self.bed = None
-			return None
-		
-		self.nums_days_stay = valid_int_greater_than_0('* Días de estancia: ')
+			self.nums_days_stay = None
 
+		return None
+		
 	def __str__(self) -> str:
 		output: str = str(self.patient)
 		output += f"\n\n* ¿Paciente admitido?: {'Sí' if self.admitted else 'No'}\n"
@@ -53,8 +57,3 @@ class MedicalHistory:
 		output += f"\n* Días de estancia: {'No aplica' if self.nums_days_stay is None else self.nums_days_stay}"
 		
 		return output
-
-if __name__ == '__main__':
-	a = MedicalHistory()
-
-	print(a)

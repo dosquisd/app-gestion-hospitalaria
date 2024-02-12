@@ -1,0 +1,6 @@
+;Document;Full Name;Sex;Birth Day;Blood Press;Temperature;O2 Saturation;Breathing Rate;Evolution Notes;Lab Results;Prescription Drugs;Diagnostic Images;Chronic Disease;Admitted;Discharged;Bed;Stay Days
+0;123456;Juan Perez;m;15/5/1980;120/80;37.2;98.0;16.0;Recibe tratamiento para la fiebre;Niveles de glucosa elevados;Paracetamol, Amoxicilina;123456.png;False;True;True;?;5
+1;234567;Maria Gonzalez;f;20/8/1975;140/90;36.8;97.0;18.0;Estable;Niveles de colesterol altos;Ibuprofeno;234567.jpg;True;True;False;True;3
+2;345678;Ana Martinez;f;10/2/1990;130/85;37.0;97.0;20.0;Elevados;Niveles de cido rico elevados;Omeprazol, Ranitidina;345678.jpeg;True;True;False;True;7
+3;456789;Carlos Lopez;m;25/11/1988;110/70;36.5;99.0;14.0;Buen estado de salud;Normal;Ninguno;456789.jpg;False;True;False;False;?
+4;567890;Laura Ramirez;f;12/3/1995;115/75;36.7;98.0;16.0;Sin complicaciones;Normal;Ninguno;567890.jpg;False;False;?;?;?
