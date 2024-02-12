@@ -64,9 +64,4 @@ class Date:
 			return day <= 29
 		
 		return day <= 28
-
-if __name__ == '__main__':
-	a = Date()
-	a.input('Fecha de nacimiento')
-
-	print(f'\n\n\n{a}')
+	

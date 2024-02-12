@@ -54,11 +54,14 @@ class HospitalFiles:
 			hospital.medical_histories[-1].bed = HospitalFiles.to_bool(df_patients['Bed'][i]) if df_patients['Bed'][i] != '?' else None
 			hospital.medical_histories[-1].nums_days_stay = int(df_patients['Stay Days'][i]) if df_patients['Stay Days'][i] != '?' else None
 
-			# print(df_patients['Bed'][i], HospitalFiles.to_bool(df_patients['Bed'][i]), type(df_patients['Bed'][i]))
+			if (hospital.num_beds == hospital.beds_used) and hospital.medical_histories[-1].bed:
+				hospital.medical_histories[-1].admitted = False
+				hospital.medical_histories[-1].discharged = None
+				hospital.medical_histories[-1].bed = None
+				hospital.medical_histories[-1].nums_days_stay = None
+			else:
+				hospital.beds_used += 1 if hospital.medical_histories[-1].bed else 0
 
-			if hospital.medical_histories[-1].bed:
-				hospital.beds_used += 1
-	
 	@staticmethod
 	def to_bool(sentence: np.bool_ | str) -> bool:
 		if type(sentence) == np.bool_:
